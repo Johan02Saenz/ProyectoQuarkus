@@ -1,31 +1,26 @@
 package com.uce.ec.p.paquete;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Singleton;
+import java.util.Arrays;
+import java.util.List;
 
-@Singleton 
-//@RequestScoped // para WebApp
-//@ApplicationScoped // Se delega el control al contenedor ArC
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+@ApplicationScoped // Se delega el control al contenedor ArC
 public class PedidoService {
 
     @Inject
-    private MailService mailService;
+    private FacturaService facturaService;
 
-    public void realizar(Pedido pedido) {
+    public void realizarPedido(String... p) {
 
-        System.out.println("Realizando pedido....");
-        System.out.println("Pedido realizado para el cliente: " + pedido.getCliente());
-        System.out.println("Producto: " + pedido.getProducto());
-        System.out.println("Total: " + pedido.getTotal());
-        System.out.println("Correo: " + pedido.getCorreo());
-        System.out.println("Pedido realizado con exito. \n ::::::::::::::::::::::::::::: ");
-        String asunto = "Confirmacion de pedido";
-        String cuerpo = "Estimado " + pedido.getCliente() + ", su pedido de " + pedido.getProducto()
-                + " por un total de $" + pedido.getTotal() + " ha sido realizado con exito.";
+        List<String> productos = Arrays.asList(p);
+        System.out.println("Productos seleccionados:");
+        productos.forEach(System.out::println);
+        System.out.println("Se procedera a generar su factura");
 
-        this.mailService.enviar(pedido.getCorreo(), asunto, cuerpo);
+        facturaService.generarFactura(new Pedido("Johan", productos, 8.10, true));
+
     }
 
 }

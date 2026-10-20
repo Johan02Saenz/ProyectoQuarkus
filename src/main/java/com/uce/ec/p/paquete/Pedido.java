@@ -1,19 +1,33 @@
 package com.uce.ec.p.paquete;
 
+import java.util.List;
+
 public class Pedido {
     private String cliente;
-    private String producto;
+    private List<String> productos;
+    private double subtotal;
+    private boolean aplicaDescuento;
+    private double descuento;
     private double total;
-    private String correo;
 
     public Pedido() {
     }
 
-    public Pedido(String cliente, String producto, double total, String correo) {
+    public Pedido(String cliente, List<String> productos, double subtotal, boolean aplicaIva) {
         this.cliente = cliente;
-        this.producto = producto;
-        this.total = total;
-        this.correo = correo;
+        this.productos = productos;
+        this.subtotal = subtotal;
+        this.aplicaDescuento = aplicaIva;
+        descuento = aplicaIVA();
+        this.total = total();
+    }
+
+    private final double aplicaIVA() {
+        return aplicaDescuento ? 0.15 : 0.00;
+    }
+
+    private final double total() {
+        return subtotal * (1 - descuento);
     }
 
     public String getCliente() {
@@ -24,12 +38,36 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public String getProducto() {
-        return producto;
+    public List<String> getProductos() {
+        return productos;
     }
 
-    public void setProducto(String producto) {
-        this.producto = producto;
+    public void setProductos(List<String> productos) {
+        this.productos = productos;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public boolean isAplicaIva() {
+        return aplicaDescuento;
+    }
+
+    public void setAplicaIva(boolean aplicaIva) {
+        this.aplicaDescuento = aplicaIva;
+    }
+
+    public double getIVA() {
+        return descuento;
+    }
+
+    public void setIVA(float iVA) {
+        descuento = iVA;
     }
 
     public double getTotal() {
@@ -38,14 +76,6 @@ public class Pedido {
 
     public void setTotal(double total) {
         this.total = total;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
     }
 
 }

@@ -11,7 +11,7 @@ import jakarta.inject.Inject;
 @QuarkusMain
 public class Main implements QuarkusApplication {
 
-   @Inject
+    @Inject
     private PedidoService pedidoService;
 
     public static void main(String[] args) {
@@ -20,9 +20,11 @@ public class Main implements QuarkusApplication {
 
     @Override
     public int run(String... args) {
-        System.out.println("---------------------------\nIniciando la app Quarkus\n---------------------------");
-        Pedido pedido = new Pedido("Alexis Tituaña", "PC", 1000, "Alex@gmail.com");
-        pedidoService.realizar(pedido);
+        System.out.println(
+                "---------------------------\nIniciando la app Quarkus (Tarea 2)\n---------------------------");
+
+        pedidoService.realizarPedido("Monster Energy Ultra", "Monster Energy Ultra Paradise", "Malvadiscos Cafe");
+        System.out.println("---------------------------\nTerminado\n---------------------------");
 
         return 0;
     }
