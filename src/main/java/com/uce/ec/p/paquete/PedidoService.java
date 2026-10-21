@@ -1,17 +1,33 @@
 package com.uce.ec.p.paquete;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
-import jakarta.inject.Singleton;
 
-@Singleton 
+//@Singleton 
 //@RequestScoped // para WebApp
-//@ApplicationScoped // Se delega el control al contenedor ArC
+@ApplicationScoped // Se delega el control al contenedor ArC
 public class PedidoService {
-
-    @Inject
+   /*
+     //Por atributo
+     @Inject
+     private MailService mailService;*/
+  
+    // Inyeccion de dependencia por setter
     private MailService mailService;
+/*
+    @Inject
+    public void setMailService(MailService mailService) {
+        System.out.println("Se esta inyectando la dependencia");
+        this.mailService = mailService;
+    }
+    */
+
+  // Inyeccion de depencias por constructor
+    @Inject
+    public PedidoService(MailService mailService) {
+        System.out.println("Por constructor");
+        this.mailService = mailService;
+    }
 
     public void realizar(Pedido pedido) {
 
