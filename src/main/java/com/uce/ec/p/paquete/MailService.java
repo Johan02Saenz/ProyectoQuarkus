@@ -1,16 +1,18 @@
 package com.uce.ec.p.paquete;
 
-import io.quarkus.arc.Unremovable;
-import jakarta.enterprise.context.ApplicationScoped;
+import com.uce.ec.p.interfaz.Notificacion;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
 
-@ApplicationScoped  //Se delega el control al contenedor ArC
-@Unremovable 
-public class MailService {
-    public void enviar(String correo, String asunto, String cuerpo) {
-        System.out.println("Enviando correo a: " + correo);
-        System.out.println("Asunto: " + asunto);
-        System.out.println("Cuerpo: " + cuerpo);
-        System.out.println("Correo enviado con exito");
+@Singleton  // Se delega el control al contenedor ArC
+@Named("mail")
+public class MailService implements Notificacion {
+
+    @Override
+    public void enviar(String destino, String msj) {
+        System.out.println("Enviar correo a" + destino);
+        System.out.println("Mensaje:" + msj);
+        System.out.println("Correo enviado con exito. \n Fin del envio del correo");
     }
 
 }

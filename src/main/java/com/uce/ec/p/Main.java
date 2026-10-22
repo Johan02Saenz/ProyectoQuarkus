@@ -21,7 +21,7 @@ public class Main implements QuarkusApplication {
     @Override
     public int run(String... args) {
         System.out.println("---------------------------\nIniciando la app Quarkus\n---------------------------");
-        Pedido pedido = new Pedido("Alexis Tituaña", "PC", 1000, "Alex@gmail.com");
+        Pedido pedido = new Pedido("Alexis Tituaña", "PC", 1000, "Alex@gmail.com","0123456789");
         pedidoService.realizar(pedido);
 
         return 0;
