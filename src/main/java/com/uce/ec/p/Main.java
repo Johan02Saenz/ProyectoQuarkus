@@ -31,6 +31,7 @@ public class Main implements QuarkusApplication {
         Compra compra = new Compra("Johan Saenz", "Monster", 3, "Johan@gmail.com", "9876543210");
         this.compraService.realizar(compra);
 
+        pedidoService.realizar(pedido);
         return 0;
     }
 }
